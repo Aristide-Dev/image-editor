@@ -40,10 +40,10 @@ export function ImageScanOverlay({
             <div className="bg-remove-scan-vignette absolute inset-0" />
             <div className="bg-remove-scan-grid absolute inset-0 opacity-[0.14]" />
 
-            <div className="bg-remove-scan-corner absolute top-2 left-2 size-5 border-t border-l border-sky-300/80" />
-            <div className="bg-remove-scan-corner absolute top-2 right-2 size-5 border-t border-r border-sky-300/80" />
-            <div className="bg-remove-scan-corner absolute bottom-2 left-2 size-5 border-b border-l border-sky-300/80" />
-            <div className="bg-remove-scan-corner absolute right-2 bottom-2 size-5 border-r border-b border-sky-300/80" />
+            <div className="bg-remove-scan-corner absolute top-2 left-2 size-5 border-t border-l border-emerald-300/80" />
+            <div className="bg-remove-scan-corner absolute top-2 right-2 size-5 border-t border-r border-emerald-300/80" />
+            <div className="bg-remove-scan-corner absolute bottom-2 left-2 size-5 border-b border-l border-emerald-300/80" />
+            <div className="bg-remove-scan-corner absolute right-2 bottom-2 size-5 border-r border-b border-emerald-300/80" />
 
             <div className="bg-remove-scan-mover absolute inset-x-0 top-0">
                 <div className="bg-remove-scan-beam absolute inset-x-0 h-28 -translate-y-1/2" />
@@ -71,7 +71,7 @@ export function ImageScanOverlay({
                             cy={40}
                             r={RING_RADIUS}
                             fill="none"
-                            stroke="rgb(96,165,250)"
+                            stroke="rgb(74,222,128)"
                             strokeWidth={3}
                             strokeLinecap="round"
                             strokeDasharray={RING_CIRCUMFERENCE}
@@ -82,7 +82,7 @@ export function ImageScanOverlay({
 
                     <span className="relative z-10 text-2xl font-semibold tracking-tight text-slate-50 tabular-nums">
                         {safePercent}
-                        <span className="text-sm font-medium text-sky-300/90">
+                        <span className="text-sm font-medium text-emerald-300/90">
                             %
                         </span>
                     </span>
@@ -96,7 +96,7 @@ export function ImageScanOverlay({
             <div className="absolute inset-x-4 bottom-3">
                 <div className="h-1 overflow-hidden rounded-full bg-white/10">
                     <div
-                        className="h-full rounded-full bg-gradient-to-r from-blue-400/90 to-sky-300 transition-[width] duration-300 ease-out"
+                        className="h-full rounded-full bg-gradient-to-r from-emerald-400/90 to-lime-300 transition-[width] duration-300 ease-out"
                         style={{ width: `${safePercent}%` }}
                     />
                 </div>

@@ -1,6 +1,5 @@
 import { Download, Loader2 } from 'lucide-react';
 import { useState } from 'react';
-import { Button } from '@/components/ui/button';
 import {
     DOWNLOAD_PRESETS,
     downloadBlob,
@@ -45,10 +44,8 @@ export function DownloadOptions({
     return (
         <section className="ie-animate-rise-delay-2 space-y-4">
             <div>
-                <h2 className="ie-display text-xl tracking-[0.04em] text-[var(--ie-fg)]">
-                    Télécharger
-                </h2>
-                <p className="mt-1 text-sm text-[var(--ie-muted)]">
+                <h2 className="text-xl font-bold">Télécharger</h2>
+                <p className="mt-1 text-sm text-aristech-muted">
                     PNG transparent, plusieurs tailles — aucun fichier n’est
                     stocké côté serveur.
                 </p>
@@ -70,22 +67,22 @@ export function DownloadOptions({
                             disabled={busyId !== null}
                             onClick={() => void handleDownload(preset)}
                             className={cn(
-                                'group flex cursor-pointer flex-col items-start rounded-xl border border-[var(--ie-line)] bg-[var(--ie-paper)]/90 p-4 text-left transition-colors duration-200',
-                                'hover:border-[var(--ie-accent)]/50 hover:bg-white',
-                                'focus-visible:ring-2 focus-visible:ring-[var(--ie-accent)] focus-visible:outline-none',
+                                'group flex cursor-pointer flex-col items-start rounded-xl border border-aristech-border bg-aristech-surface p-4 text-left transition-colors duration-200',
+                                'hover:border-aristech-accent/50 hover:bg-white',
+                                'focus-visible:ring-2 focus-visible:ring-aristech-accent focus-visible:outline-none',
                                 'disabled:cursor-not-allowed disabled:opacity-60',
                             )}
                         >
-                            <span className="ie-display text-lg tracking-[0.04em] text-[var(--ie-fg)]">
+                            <span className="font-heading text-lg font-bold text-aristech-heading">
                                 {preset.label}
                             </span>
-                            <span className="mt-0.5 text-xs text-[var(--ie-muted)]">
+                            <span className="mt-0.5 text-xs text-aristech-muted">
                                 {preset.description}
                             </span>
-                            <span className="mt-3 text-sm font-medium tabular-nums text-[var(--ie-fg)]">
+                            <span className="mt-3 text-sm font-medium tabular-nums text-aristech-heading">
                                 {size.width} × {size.height}
                             </span>
-                            <span className="mt-3 inline-flex items-center gap-1.5 text-xs font-medium text-[var(--ie-accent-strong)] transition-opacity duration-200 group-hover:opacity-90">
+                            <span className="mt-3 inline-flex items-center gap-1.5 text-xs font-semibold text-aristech-accent transition-opacity duration-200 group-hover:opacity-90">
                                 {busy ? (
                                     <Loader2
                                         className="size-3.5 animate-spin"
@@ -104,11 +101,11 @@ export function DownloadOptions({
                 })}
             </div>
 
-            <Button
+            <button
                 type="button"
                 disabled={busyId !== null}
                 onClick={() => void handleDownload(DOWNLOAD_PRESETS[0])}
-                className="h-11 cursor-pointer rounded-xl bg-[var(--ie-accent)] px-6 font-semibold text-white hover:bg-[var(--ie-accent-strong)]"
+                className="tools-cta-primary"
             >
                 {busyId === 'original' ? (
                     <Loader2 className="size-4 animate-spin" aria-hidden />
@@ -116,7 +113,7 @@ export function DownloadOptions({
                     <Download className="size-4" aria-hidden />
                 )}
                 Télécharger HD
-            </Button>
+            </button>
         </section>
     );
 }

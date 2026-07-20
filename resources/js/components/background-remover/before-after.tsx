@@ -58,7 +58,7 @@ export function BeforeAfter({
         <div
             ref={trackRef}
             className={cn(
-                'relative overflow-hidden rounded-2xl border border-[var(--ie-line)] bg-white shadow-[0_20px_60px_-28px_rgba(15,23,42,0.35)]',
+                'relative overflow-hidden rounded-2xl border border-aristech-border bg-aristech-surface shadow-md shadow-slate-900/5',
                 className,
             )}
         >
@@ -101,7 +101,7 @@ export function BeforeAfter({
                                 aria-valuemax={100}
                                 aria-valuenow={Math.round(position)}
                                 role="slider"
-                                className="absolute top-1/2 left-1/2 flex size-10 -translate-x-1/2 -translate-y-1/2 cursor-ew-resize items-center justify-center rounded-full border border-slate-200 bg-white text-[var(--ie-fg)] shadow-md transition-colors duration-200 hover:border-[var(--ie-accent)]"
+                                className="absolute top-1/2 left-1/2 flex size-10 -translate-x-1/2 -translate-y-1/2 cursor-ew-resize items-center justify-center rounded-full border border-aristech-border bg-white text-aristech-heading shadow-md transition-colors duration-200 hover:border-aristech-accent"
                                 onPointerDown={(event) => {
                                     event.preventDefault();
                                     setDragging(true);
@@ -123,7 +123,7 @@ export function BeforeAfter({
                         <span className="absolute top-3 left-3 z-[4] rounded-md bg-slate-900/75 px-2.5 py-1 text-[10px] font-semibold tracking-[0.12em] text-white uppercase backdrop-blur-sm">
                             Avant
                         </span>
-                        <span className="absolute top-3 right-3 z-[4] rounded-md bg-[var(--ie-accent)] px-2.5 py-1 text-[10px] font-semibold tracking-[0.12em] text-white uppercase shadow-sm">
+                        <span className="absolute top-3 right-3 z-[4] rounded-md bg-aristech-accent px-2.5 py-1 text-[10px] font-semibold tracking-[0.12em] text-white uppercase shadow-sm">
                             Après
                         </span>
                     </>

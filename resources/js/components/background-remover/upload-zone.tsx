@@ -45,25 +45,25 @@ export function UploadZone({ onFile, disabled }: UploadZoneProps) {
             onDragLeave={() => setDragging(false)}
             onDrop={onDrop}
             className={cn(
-                'group relative flex min-h-[20rem] cursor-pointer flex-col items-center justify-center overflow-hidden rounded-2xl border-2 border-dashed bg-white px-6 py-14 text-center shadow-[0_24px_80px_-40px_rgba(37,99,235,0.45)] transition-colors duration-200 sm:min-h-[24rem]',
+                'group relative flex min-h-[20rem] cursor-pointer flex-col items-center justify-center overflow-hidden rounded-2xl border-2 border-dashed px-6 py-14 text-center shadow-md shadow-slate-900/5 transition-colors duration-200 sm:min-h-[24rem]',
                 dragging
-                    ? 'border-[var(--ie-accent)] bg-[var(--ie-accent-soft)]'
-                    : 'border-slate-200 hover:border-[var(--ie-accent)]/70',
+                    ? 'border-aristech-accent bg-aristech-accent/5'
+                    : 'border-aristech-border bg-aristech-surface hover:border-aristech-accent/60',
                 disabled && 'pointer-events-none opacity-60',
             )}
         >
-            <span className="relative mb-5 flex size-16 items-center justify-center rounded-full bg-[var(--ie-accent-soft)] text-[var(--ie-accent)] transition-colors duration-200 group-hover:bg-[var(--ie-accent)]/15">
+            <span className="relative mb-5 flex size-16 items-center justify-center rounded-full bg-aristech-accent/10 text-aristech-accent transition-colors duration-200 group-hover:bg-aristech-accent/15">
                 <ImagePlus className="size-7" aria-hidden />
             </span>
 
-            <span className="relative text-xl font-semibold text-[var(--ie-fg)] sm:text-2xl">
+            <span className="relative font-heading text-xl font-bold text-aristech-heading sm:text-2xl">
                 Dépose une image ici
             </span>
-            <p className="relative mt-2 max-w-sm text-sm text-[var(--ie-muted)]">
+            <p className="relative mt-2 max-w-sm text-sm text-aristech-muted">
                 PNG, JPG ou WebP — le fond est retiré automatiquement.
             </p>
 
-            <span className="relative mt-7 inline-flex items-center gap-2 rounded-xl bg-[var(--ie-accent)] px-6 py-3 text-sm font-semibold text-white shadow-[0_12px_28px_-10px_var(--ie-accent)] transition-colors duration-200 group-hover:bg-[var(--ie-accent-strong)]">
+            <span className="tools-cta-primary relative mt-7">
                 <Upload className="size-4" aria-hidden />
                 Upload Image
             </span>
