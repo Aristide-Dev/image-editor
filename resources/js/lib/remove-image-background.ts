@@ -5,13 +5,14 @@ export type BackgroundRemovalProgress = {
 
 type ProgressCallback = (progress: BackgroundRemovalProgress) => void;
 
-const ORT_WASM_CDN =
-    'https://cdn.jsdelivr.net/npm/onnxruntime-web@1.21.0/dist/';
-
 /**
  * Remove image background in the browser (ONNX model via @imgly/background-removal).
  * First run downloads the model; subsequent calls reuse the cache.
  * Nothing is uploaded to a server.
+ *
+ * Do NOT import('onnxruntime-web') with @vite-ignore — that leaves a bare
+ * module specifier that browsers cannot resolve in production. Imgly loads
+ * ORT + WASM itself via its CDN publicPath.
  */
 export async function removeImageBackground(
     source: string | Blob | File,
@@ -27,24 +28,18 @@ export async function removeImageBackground(
     report(2, 'Chargement de l’image…');
     const imageBlob = await resolveBlob(source);
 
-    report(8, 'Chargement du moteur…');
-
-    // Point ORT WASM at a stable CDN so Vite never rewrites ort.bundle.min
-    // to a broken /node_modules/.vite/deps URL (IPv6 / port mismatch).
-    const ort = await import(/* @vite-ignore */ 'onnxruntime-web');
-    ort.env.wasm.wasmPaths = ORT_WASM_CDN;
+    report(8, 'Chargement du modèle…');
 
     const { removeBackground } = await import('@imgly/background-removal');
 
-    report(12, 'Chargement du modèle…');
-
     const blob = await removeBackground(imageBlob, {
+        // Avoid Vite spawning broken worker/WASM resolution in prod & dev.
         proxyToWorker: false,
         model: 'isnet_fp16',
         progress: (key, current, total) => {
             if (total > 0 && current < total) {
                 const ratio = current / total;
-                report(12 + ratio * 70, `Préparation ${key}…`);
+                report(8 + ratio * 72, `Préparation ${key}…`);
 
                 return;
             }

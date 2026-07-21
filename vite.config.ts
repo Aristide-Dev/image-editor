@@ -31,11 +31,11 @@ export default defineConfig({
             formVariants: true,
         }),
     ],
-    // onnxruntime-web uses dynamic ESM imports that break under Vite's
-    // dependency pre-bundler (ort.bundle.min → Failed to fetch…).
+    // onnxruntime-web: exclude from Vite's *dev* prebundle (dynamic WASM imports
+    // break under optimizeDeps). Production Rollup still bundles it via imgly.
     // See: https://github.com/microsoft/onnxruntime/issues/22615
     optimizeDeps: {
-        exclude: ['onnxruntime-web', '@imgly/background-removal'],
+        exclude: ['onnxruntime-web'],
     },
     assetsInclude: ['**/*.wasm'],
     server: {
