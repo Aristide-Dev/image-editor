@@ -58,6 +58,7 @@ export function buildWebManifest(options: GenerateOptions, maskable = false): st
 export function buildHtmlHead(platform: PlatformId): string {
     if (platform === 'pwa') {
         return `<!-- Coller dans <head> -->
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="icon" href="/favicon.ico" sizes="any">
 <link rel="apple-touch-icon" href="/icons/icon-192.png">
 <link rel="manifest" href="/site.webmanifest">
@@ -66,15 +67,17 @@ export function buildHtmlHead(platform: PlatformId): string {
     }
 
     if (platform === 'nextjs') {
-        return `<!-- Next.js App Router : place les fichiers dans /app et /public.
-  favicon.ico, icon.png, apple-icon.png sont détectés automatiquement.
-  Ajoute le manifest dans app/layout.tsx metadata si besoin. -->
+        return `<!-- Next.js App Router :
+  - app/icon.svg, app/icon.png, app/favicon.ico, app/apple-icon.png → auto
+  - public/favicon.svg en secours -->
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
 `;
     }
 
-    const base = platform === 'react' || platform === 'vue' ? '/' : '/';
+    const base = '/';
 
     return `<!-- Coller dans <head> (chemins depuis ${base}) -->
+<link rel="icon" href="${base}favicon.svg" type="image/svg+xml">
 <link rel="icon" type="image/png" sizes="32x32" href="${base}favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="${base}favicon-16x16.png">
 <link rel="shortcut icon" href="${base}favicon.ico">

@@ -344,7 +344,11 @@ export default function IconGenerator() {
                                     {buildHtmlHead(activeSnippet)}
                                 </pre>
                                 <p className="text-xs text-aristech-muted">
-                                    Normes : favicon 16/32 +{' '}
+                                    Normes :{' '}
+                                    <code className="rounded bg-aristech-surface-elevated px-1">
+                                        favicon.svg
+                                    </code>
+                                    , favicon 16/32 +{' '}
                                     <code className="rounded bg-aristech-surface-elevated px-1">
                                         favicon.ico
                                     </code>

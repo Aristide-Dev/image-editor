@@ -3,14 +3,14 @@
  * Toutes les dimensions sont en pixels. Nommage = conventions officielles.
  */
 
-export type IconFormat = 'png' | 'ico' | 'json' | 'xml' | 'webmanifest' | 'txt';
+export type IconFormat = 'png' | 'ico' | 'svg' | 'json' | 'xml' | 'webmanifest' | 'txt';
 
 export type IconAssetSpec = {
     /** Chemin relatif dans le ZIP */
     path: string;
     width: number;
     height: number;
-    format: 'png' | 'ico';
+    format: 'png' | 'ico' | 'svg';
     /** Remplir le fond (ex. Apple Touch opaque) */
     background?: string | null;
     /** Padding ratio 0–0.5 (safe zone Android adaptive / iOS) */
@@ -20,7 +20,7 @@ export type IconAssetSpec = {
 
 export type TextAssetSpec = {
     path: string;
-    format: Exclude<IconFormat, 'png' | 'ico'>;
+    format: Exclude<IconFormat, 'png' | 'ico' | 'svg'>;
     /** Clé pour générer le contenu dynamiquement */
     kind: 'html' | 'webmanifest' | 'browserconfig' | 'contents-json' | 'readme' | 'pubspec-hint';
 };
@@ -44,6 +44,13 @@ export type PlatformSpec = {
 };
 
 const webIcons: IconAssetSpec[] = [
+    {
+        path: 'favicon.svg',
+        width: 32,
+        height: 32,
+        format: 'svg',
+        label: 'Favicon SVG',
+    },
     {
         path: 'favicon-16x16.png',
         width: 16,
@@ -303,6 +310,13 @@ const flutterIcons: IconAssetSpec[] = [
         label: 'iOS 120',
     },
     {
+        path: 'web/favicon.svg',
+        width: 32,
+        height: 32,
+        format: 'svg',
+        label: 'Web favicon SVG',
+    },
+    {
         path: 'web/favicon.png',
         width: 32,
         height: 32,
@@ -366,6 +380,13 @@ export const PLATFORM_SPECS: Record<PlatformId, PlatformSpec> = {
         description: 'Convention app/ (icon.png, apple-icon.png) + favicon.ico',
         icons: [
             {
+                path: 'app/icon.svg',
+                width: 32,
+                height: 32,
+                format: 'svg',
+                label: 'app/icon.svg',
+            },
+            {
                 path: 'app/favicon.ico',
                 width: 32,
                 height: 32,
@@ -386,6 +407,13 @@ export const PLATFORM_SPECS: Record<PlatformId, PlatformSpec> = {
                 format: 'png',
                 background: '#ffffff',
                 label: 'app/apple-icon.png',
+            },
+            {
+                path: 'public/favicon.svg',
+                width: 32,
+                height: 32,
+                format: 'svg',
+                label: 'public/favicon.svg',
             },
             {
                 path: 'public/android-chrome-192x192.png',
@@ -431,6 +459,13 @@ export const PLATFORM_SPECS: Record<PlatformId, PlatformSpec> = {
         label: 'PWA',
         description: 'Maskable + standard 192/512 + manifest',
         icons: [
+            {
+                path: 'favicon.svg',
+                width: 32,
+                height: 32,
+                format: 'svg',
+                label: 'Favicon SVG',
+            },
             {
                 path: 'icons/icon-192.png',
                 width: 192,

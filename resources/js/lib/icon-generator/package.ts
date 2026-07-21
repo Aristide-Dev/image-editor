@@ -9,7 +9,7 @@ import {
     type IconAssetSpec,
     type PlatformId,
 } from './specs';
-
+import { buildFaviconSvg } from './svg';
 export type GeneratedIcon = {
     path: string;
     label: string;
@@ -42,6 +42,17 @@ async function renderAsset(
         });
 
         return buildFaviconIco([png16, png32]);
+    }
+
+    if (spec.format === 'svg') {
+        const png = await renderIconPng(source, {
+            width: 512,
+            height: 512,
+            background: spec.background !== undefined ? spec.background : null,
+            padding: spec.padding ?? 0,
+        });
+
+        return buildFaviconSvg(png, 32);
     }
 
     return renderIconPng(source, {
@@ -93,7 +104,7 @@ export async function generateIconPack(
         const blob = await renderAsset(img, spec);
         zip.file(spec.path, blob);
 
-        if (spec.format === 'png') {
+        if (spec.format === 'png' || spec.format === 'svg') {
             icons.push({
                 path: spec.path,
                 label: spec.label,
